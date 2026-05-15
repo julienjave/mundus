@@ -2,9 +2,9 @@
 
 **Mundus** is a modern, interactive **world dashboard** for exploring global demographics, geography, and real-time weather. It bridges **multiple global sources** into a single, elegant interface, allowing users to **explore the world through data**.
 
-[Live Demo]("https://julienjave.github.io/mundus/")
+[Live Demo](https://julienjave.github.io/mundus/)
 
-![Mundus Demo]("https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb")
+![Mundus Demo](https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb)
 
 
 ## 1. Features
