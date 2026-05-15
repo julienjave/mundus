@@ -1,0 +1,31 @@
+/* GENERAL SETTINGS */
+
+/* --- Box Sizing --- */
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* --- General --- */
+body {
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Chiron GoRound TC", sans-serif;
+    font-size: 16px;
+    margin: 0;
+    color: var(--text);
+}
+
+header, .welcome-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+

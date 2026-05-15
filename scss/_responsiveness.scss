@@ -1,0 +1,272 @@
+/* RESPONSIVENESS */
+
+/* --- Small Desktops --- */
+@media screen and (max-width: 1200px) {
+    .display {
+        width: 90vw;
+    }
+
+    .welcome-wrapper {
+        width: 80%;
+    }
+
+    #backToTop {
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 1112px) {
+    .welcome-wrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1082px) {
+    .display {
+        width: 96vw;
+    }
+}
+
+@media screen and (max-width: 983px) {
+    #weather-icon {
+        width: 180px;
+        height: 180px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .main-logo {
+        width: 125px;
+        height: 125px;
+    }
+
+    .weather-temperature {
+        font-size: 3em;
+    }
+
+    .weather-feels-like {
+        font-size: 1.5em;
+    }
+
+    .three-day-title {
+        font-size: 1.3em;
+    }
+
+    .chart {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 889px) {
+    .welcome-wrapper {
+            width: 95%;
+        }
+
+    .weather-left-subsection, .weather-right-subsection {
+        width: 50%;
+    }
+
+    .weather-right-subsection {
+        padding-left: 15px;
+    }
+}
+
+@media screen and (max-width: 843px) {
+    #country-flag {
+        width: 150px;
+        height: 100px;
+        margin-left: 5px;
+    }
+
+    #country-name {
+        font-size: 3em;
+        margin: 0 5px;
+    }
+    
+    .chart {
+        width: 150px;
+    }
+
+    .weather-feels-like {
+        font-size: 1.2em;
+    }
+}
+
+/* --- Tablets --- */
+@media screen and (max-width: 780px) {
+    body {
+        font-size: 15px;
+    }
+
+    .main-logo {
+        width: 135px;
+        height: 135px;
+    }
+
+    .welcome-input-wrapper {
+        width: 400px;
+    }
+
+    .other-info {
+        flex-direction: column;
+    }
+
+    .chart {
+        width: 250px;
+    }
+
+    .results-wrapper {
+        flex-direction: column;
+    }
+
+    .worldmap, .forecast {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .worldmap {
+        border-bottom: 2px solid var(--accent);
+        border-radius: 0;
+    }
+
+    .forecast {
+        border-left: none;
+        border-bottom-left-radius: 16px;
+        padding-bottom: 15px;
+    }
+
+    .weather-left-subsection {
+        width: 60%;
+    }
+
+    .weather-right-subsection {
+        width: 40%;
+    }
+
+    #weather-icon {
+        width: 200px;
+        height: 200px;
+    }
+
+    .weather-temperature {
+        font-size: 4em;
+    }
+
+    .weather-feels-like {
+        font-size: 2em;
+    }
+
+    .three-day-title {
+        font-size: 1.5em;
+    }
+
+    .three-day-forecast {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    body {
+        font-size: 14px;
+    }
+
+    .main-logo {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+@media screen and (max-width: 603px) {
+    .welcome-input-wrapper {
+        width: 300px;
+    }
+
+    #country-name {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 588px) {
+    #dropdown-about {
+        width: 450px;
+    }
+
+    .three-day-title {
+        font-size: 1.2em;
+    }
+
+    .next-temp {
+        font-size: 0.7em;
+    }
+}
+
+/* --- Phones --- */
+@media screen and (max-width: 534px) {
+    .welcome-header {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .popup-title {
+        font-size: 1.6em;
+    }
+
+    .display {
+        width: 96vw;
+    }
+
+    .other-info-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #country-name {
+        font-size: 2em;
+    }
+
+    #country-flag {
+        width: 125px;
+        height: 75px;
+    }
+
+    #weather-icon {
+        width: 150px;
+        height: 150px;
+    }
+
+    .weather-temperature {
+        font-size: 3em;
+    }
+
+    .weather-feels-like {
+        font-size: 1.5em;
+    }
+
+    .weather-left-subsection, .weather-right-subsection {
+        width: 50%;
+    }
+
+    .weather-right-subsection {
+        padding-left: 15px;
+    }
+
+    .three-day-forecast {
+        width: 90%;
+    }
+
+    .three-day-title {
+        font-size: 1.4em;
+    }
+
+    .next-temp {
+        font-size: 0.9em;
+    }
+
+    #backToTop {
+        bottom: 10px;
+    }
+
+    // POPUPS
+}

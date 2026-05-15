@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default" data-mode="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Julien Javelaud">
+    <meta name="description" content="Explore global demographics, languages, and economics with Mundus. An interactive dashboard featuring optimized mapping data and live statistical charts.">
+    <title>Mundus</title>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Macondo+Swash+Caps&display=swap" rel="stylesheet">
+    <!-- STYLE -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- SCRIPTS -->
+    <!-- Our mapping system -->
+    <script src="js/mapping-codes.js"></script>
+    <!-- Data -->
+    <script src="data/list-countries.js"></script>
+    <!-- The Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <!-- The Leaflet.js library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <!-- Custom scripts -->
+    <script src="js/script.js" defer></script>
+    <script src="js/interface.js" defer></script>
+    <script src="js/charts.js" defer></script>
+    <script src="js/forecast.js" defer></script>
+    <script src="js/map.js" defer></script>
+</head>
+<body>
+    <!-- SVG LIBRARY/DEFINITIONS (to reuse throughout the website) viewBox="0 0 640 640"-->
+    <svg style="display: none;">
+        <symbol id="icon-capital-pin" viewBox="0 0 640 640">
+            <path d="M352 348.4C416.1 333.9 464 276.5 464 208C464 128.5 399.5 64 320 64C240.5 64 176 128.5 176 208C176 276.5 223.9 333.9 288 348.4L288 544C288 561.7 302.3 576 320 576C337.7 576 352 561.7 352 544L352 348.4zM328 160C297.1 160 272 185.1 272 216C272 229.3 261.3 240 248 240C234.7 240 224 229.3 224 216C224 158.6 270.6 112 328 112C341.3 112 352 122.7 352 136C352 149.3 341.3 160 328 160z"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 -960 960 960">
+            <path d="M796-121 533-384q-30 26-70 40.5T378-329q-108 0-183-75t-75-181q0-106 75-181t182-75q106 0 180.5 75T632-585q0 43-14 83t-42 75l264 262-44 44ZM377-389q81 0 138-57.5T572-585q0-81-57-138.5T377-781q-82 0-139.5 57.5T180-585q0 81 57.5 138.5T377-389Z"/>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 640 640">
+            <path d="M96,133.489L182.7,133.489C184.886,133.489 186.863,132.192 187.734,130.188C199.189,103.832 225.453,85.489 256,85.489C286.547,85.489 312.811,103.832 324.266,130.188C325.137,132.192 327.114,133.489 329.3,133.489L544,133.489C558.664,133.489 570.511,145.336 570.511,160C570.511,174.664 558.664,186.511 544,186.511L329.3,186.511C327.114,186.511 325.137,187.808 324.266,189.812C312.811,216.168 286.547,234.511 256,234.511C225.453,234.511 199.189,216.168 187.734,189.812C186.863,187.808 184.886,186.511 182.7,186.511L96,186.511C81.336,186.511 69.489,174.664 69.489,160C69.489,145.336 81.336,133.489 96,133.489ZM255.485,97.897C220.983,97.897 192.971,125.909 192.971,160.412C192.971,194.914 220.983,222.926 255.485,222.926C289.988,222.926 318,194.914 318,160.412C318,125.909 289.988,97.897 255.485,97.897ZM96,293.489L342.7,293.489C344.886,293.489 346.863,292.192 347.734,290.188C359.189,263.832 385.453,245.489 416,245.489C446.547,245.489 472.811,263.832 484.266,290.188C485.137,292.192 487.114,293.489 489.3,293.489L544,293.489C558.664,293.489 570.511,305.336 570.511,320C570.511,334.664 558.664,346.511 544,346.511L489.3,346.511C487.114,346.511 485.137,347.808 484.266,349.812C472.811,376.168 446.547,394.511 416,394.511C385.453,394.511 359.189,376.168 347.734,349.812C346.863,347.808 344.886,346.511 342.7,346.511L96,346.511C81.336,346.511 69.489,334.664 69.489,320C69.489,305.336 81.336,293.489 96,293.489ZM415.76,257.485C381.257,257.485 353.245,285.497 353.245,320C353.245,354.503 381.257,382.515 415.76,382.515C450.263,382.515 478.274,354.503 478.274,320C478.274,285.497 450.263,257.485 415.76,257.485ZM96,453.489L150.7,453.489C152.886,453.489 154.863,452.192 155.734,450.188C167.189,423.832 193.453,405.489 224,405.489C254.547,405.489 280.811,423.832 292.266,450.188C293.137,452.192 295.114,453.489 297.3,453.489L544,453.489C558.664,453.489 570.511,465.336 570.511,480C570.511,494.664 558.664,506.511 544,506.511L297.3,506.511C295.114,506.511 293.137,507.808 292.266,509.812C280.811,536.168 254.547,554.511 224,554.511C193.453,554.511 167.189,536.168 155.734,509.812C154.863,507.808 152.886,506.511 150.7,506.511L96,506.511C81.336,506.511 69.489,494.664 69.489,480C69.489,465.336 81.336,453.489 96,453.489ZM224.65,417.995C190.147,417.995 162.136,446.007 162.136,480.509C162.136,515.012 190.147,543.024 224.65,543.024C259.153,543.024 287.165,515.012 287.165,480.509C287.165,446.007 259.153,417.995 224.65,417.995Z"/>
+        </symbol>
+        <symbol id="icon-about" viewBox="0 -960 960 960">
+            <path d="M511-258q11-11 11-27t-11-27q-11-11-27-11t-27 11q-11 11-11 27t11 27q11 11 27 11t27-11Zm-62-135h59q0-26 6.5-47.5T555-490q31-26 44-51t13-55q0-53-34.5-85T486-713q-49 0-86.5 24.5T345-621l53 20q11-28 33-43.5t52-15.5q34 0 55 18.5t21 47.5q0 22-13 41.5T508-512q-30 26-44.5 51.5T449-393Zm31 313q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z"/>
+        </symbol>
+        <symbol id="icon-light" viewBox="0 -960 960 960">
+            <path d="M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z"/>
+        </symbol>
+        <symbol id="icon-dark" viewBox="0 -960 960 960">
+            <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z"/>
+        </symbol>
+        <symbol id="icon-back-to-top" viewBox="0 -960 960 960">
+            <path d="M452-244v-400L282-477l-42-43 241-241 241 241-42 42-168-168v402h-60Z"/>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 128 128">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"/><path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"/>
+        </symbol>
+        <symbol id="icon-see-list" viewBox="0 -960 960 960">
+            <path d="M440-220q125 0 212.5-87.5T740-520q0-125-87.5-212.5T440-820q-125 0-212.5 87.5T140-520q0 125 87.5 212.5T440-220Zm0-300Zm0 160q-83 0-147.5-44.5T200-520q28-70 92.5-115T440-680q82 0 146.5 45T680-520q-29 71-93.5 115.5T440-360Zm0-60q55 0 101-26.5t72-73.5q-26-46-72-73t-101-27q-56 0-102 27t-72 73q26 47 72 73.5T440-420Zm0-50q20 0 35-14.5t15-35.5q0-20-15-35t-35-15q-21 0-35.5 15T390-520q0 21 14.5 35.5T440-470Zm0 310q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T80-520q0-74 28.5-139.5t77-114.5q48.5-49 114-77.5T440-880q74 0 139.5 28.5T694-774q49 49 77.5 114.5T800-520q0 67-22.5 126T715-287l164 165-42 42-165-165q-48 40-107 62.5T440-160Z"/>
+        </symbol>
+    </svg>
+    <header>
+        <img src="images/logo-mundus.svg" alt="" class="main-logo">
+        <div class="title-name-wrapper">
+            <span id="welcome">Welcome to</span>
+            <span class="title">Mundus</span>
+            <span id="subtitle">Your Portal to the World</span>
+        </div>
+    </header>
+
+    <!-- LOADER / SPINNER -->
+    <div id="loader" class="popup-background" style="display: none;">
+        <div class="loader-wrapper">
+            <div class="spinner"></div>
+            <p class="loader-text">Gathering data...</p>
+        </div>
+    </div>
+
+    <!-- WELCOME POPUP -->
+    <div class="welcome-popup-background" id="popup-welcome">
+        <div class="welcome-wrapper">
+            <div class="welcome-header">
+                <img src="images/logo-mundus.svg" alt="" class="main-logo">
+                <div class="title-name-wrapper">
+                    <span id="welcome">Welcome to</span>
+                    <span class="title">Mundus</span>
+                    <span id="subtitle">Your Portal to the World</span>
+                </div>
+            </div>
+            <div class="welcome-main">
+                <p><strong>Start exploring the world</strong> by entering the name of a country in the field below and <strong>press 'enter'</strong>:
+                    <br><em>(Once on the App, do the same in the search bar to look up an other country)</em>
+                </p>
+                <div class="welcome-input-wrapper">
+                    <svg class="icon-searchbox"><use href="#icon-search"/></svg>
+                    <input type="text" class="search-box" id="welcome-search-box" placeholder="Type a country name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTHER POPUPS -->
+    <!-- List of Countries -->
+    <div id="list-countries" class="popup-background" style="display: none;">
+        <div class="popup-wrapper">
+            <div class="popup-header">
+                <span class="popup-title">List of Countries by Regions</span>
+                <span class="popup-note">(Note: This is a list of the main sovereign countries, but other non-independent countries and territories can work as well.)</span>
+            </div>
+            <div class="popup-content">
+                <div id="list-content"></div>
+            </div>  
+            <div class="close-btn" id="close-list-btn">Close</div>
+        </div>
+    </div>
+
+    <!-- Error Messages -->
+    <div id="error-popup" class="popup-background" style="display: none;">
+        <div class="popup-wrapper" id="error-wrapper">
+            <div class="popup-header">
+                <span class="popup-title">Ooops, something went wrong...</span>
+            </div>
+            <div class="popup-content">
+                <div id="error-message">
+                    <span>Sorry, it looks like an error occured:</span>
+                    <div id="error-message-content"></div>
+                </div>
+            </div>
+            <div class="close-btn" id="close-error-btn">Close</div>
+        </div>
+    </div>
+
+    <!-- DISPLAY RESULTS SECTION -->
+    <section class="display" id="display-section">
+        <div class="display-wrapper" id="display-wrapper">
+            <div class="top-bar">
+                <!-- INPUT/SEARCHBAR SECTION -->
+                <div class="input" id="input-section">
+                    <div class="input-wrapper">
+                        <svg class="icon-searchbox"><use href="#icon-search"/></svg>
+                        <input type="text" class="search-box" id="search-box" placeholder="Search bar">
+                        <!-- Suggestion box -->
+                        <div class="suggestion-box" id="suggestion-box" style="display: none;">
+                            <span class="suggestion-title">SUGGESTIONS</span>
+                            <div class="scroll-container">
+                                <div id="suggestion-items">
+                                    <!-- Javascript will populate it -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-country-btn" id="list-country-btn">
+                        <svg class="icon-list"><use href="#icon-see-list"/></svg>
+                        <span>Show list</span>
+                    </div>
+                </div>
+                <!-- SETTINGS / ABOUT -->
+                <div class="settings-options">
+                    <div class="settings-wrapper">
+                        <div class="option" id="settings-btn">
+                            <svg class="settings-icon"><use href="#icon-settings"/></svg>
+                        </div>
+                        <!-- Settings Dropdown Menu - hidden by default -->
+                        <div class="dropdown" id="dropdown">
+                            <!-- --- Color Palette --- -->
+                            <div class="dropdown-label">Color palette</div>
+
+                            <div class="theme-option active" data-theme="default">
+                                <div class="swatch" style="background-color: #000080;"></div>
+                                Mundus <em style="font-size: 0.7em;">(Default)</em>
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <div class="theme-option" data-theme="blue">
+                                <div class="swatch" style="background-color: #2c41ff;"></div>
+                                Blue
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <div class="theme-option" data-theme="rainforest">
+                                <div class="swatch" style="background-color: #007e08;"></div>
+                                Rainforest
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <div class="theme-option" data-theme="citrus">
+                                <div class="swatch" style="background-color: #ff8800;"></div>
+                                Citrus
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <div class="theme-option" data-theme="rhubarb">
+                                <div class="swatch" style="background-color: #b83047;"></div>
+                                Rhubarb
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <div class="theme-option" data-theme="candy">
+                                <div class="swatch" style="background-color: #ff23f8;"></div>
+                                Candy
+                                <span class="checkmark">✓</span>
+                            </div>
+                            <!-- ADD OTHER THEMES -->
+
+                            <!-- --- Light/Dark Mode --- -->
+                            <div class="dropdown-label">Light/Dark Mode</div>
+
+                            <div class="mode-option">
+                                <svg><use href="#icon-light"/></svg>
+                                <input type="checkbox" id="mode-toggle" />
+                                <svg><use href="#icon-dark"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-wrapper">
+                        <div class="option" id="about-btn">
+                            <svg class="about-icon"><use href="#icon-about"/></svg>
+                        </div>
+                        <!-- About Dropdown Menu - hidden by default -->
+                        <div class="dropdown" id="dropdown-about">
+                            <div class="dropdown-label">About Mundus</div>
+                            <div class="about-option">
+                                <p><strong>Mundus</strong> is a centralized global intelligence dashboard designed to provide an exhaustive profile of any nation at the click of a button. Derived from the Latin word for <strong>"world"</strong>, Mundus synthesizes complex geopolitical, demographic, and meteorological data into a singular, intuitive interface.<br>
+                                <br>
+                                The application allows users to explore the intricate layers of a country, from its economic standing and government structure to its cultural demographics and real-time environmental conditions.</p>
+                                <span><strong>Key Features:</strong></span>
+                                <ul>
+                                    <li><strong>National Profiles:</strong> Comprehensive data on geography, official languages, currency, and government types.</li>
+                                    <li><strong>Demographic Analytics:</strong> Visual breakdown of ethnic and religious compositions.</li>
+                                    <li><strong>Economic Indicators:</strong> Real-time GDP per capita data to provide economic context.</li>
+                                    <li><strong>Integrated Geospatial Mapping:</strong> Dynamic location of countries and capital cities.</li>
+                                    <li><strong>Capital Intelligence:</strong> Real-time weather forecasts and environmental air quality monitoring for national capitals.</li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-label">Libraries</div>
+                            <div class="about-option">
+                                <p>Mundus leverages industry-standard open-source libraries to transform raw data into a visual experience:
+                                    <ul>
+                                        <li>
+                                            <a class="link-lib" href="https://leafletjs.com/" target="_blank">
+                                                <span class="lib-name" id="lib-leaflet">
+                                                    <img src="images/leafletLogo.svg" class="leaflet-logo" />
+                                                </span>
+                                            </a>
+                                             - Powers the interactive geospatial engine, enabling precise mapping and capital city location services.
+                                        </li>
+                                        <li>
+                                            <a class="link-lib" href="https://www.chartjs.org/" target="_blank">
+                                                <span class="lib-name" id="lib-chart">
+                                                    <div class="lib-name-wrapper">
+                                                        <img src="images/chartLogo.svg" class="chart-logo" /> Chart.js
+                                                    </div>
+                                                </span>
+                                            </a>
+                                             - Utilized specifically for our cultural data visualizations, rendering responsive charts for ethnic groups and religious distributions.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="dropdown-label">Data Sources</div>
+                            <div class="about-option">
+                                <p>Our data is aggregated from some of the most respected global databases and meteorological institutions:
+                                    <ul>
+                                        <li><a href="https://restcountries.com" target="_blank" class="link-api">RESTCountries API</a>: The primary source for core national data including demographics, geography, and official state symbols.</li>
+                                        <li><a href="https://github.com/factbook/factbook.json" target="_blank" class="link-api">The World Factbook</a>: Provides the detailed cultural datasets used to generate our ethnic and religious distribution charts.</li>
+                                        <li><a href="https://api.worldbank.org" target="_blank" class="link-api">World Bank Open Data</a>: Supplies our economic metrics, specifically the GDP per capita figures.</li>
+                                        <li><a href="https://api.open-meteo.com" target="_blank" class="link-api">Open-Meteo</a>: Delivers high-resolution weather and Air Quality Index (AQI) data for the world's capital cities.</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="dropdown-label">Source Code</div>
+                            <div class="about-option">
+                                <p>You can find the source code of <strong>Mundus</strong> in our Github repository:</p>
+                                <div class="link">
+                                    <svg class="link-icon"><use href="#icon-github"/></svg>
+                                    <a href="#" target="_blank"><em>Source Code</em></a>
+                                </div>
+                                <span class="copyright">&#169 2026 Julien Javelaud</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MAIN DISPLAY -->
+            <div class="main-display" id="main-display">
+                <!-- FLAG / NAME -->
+                <div class="flag-name" id="flag-name">
+                    <img src="images/flag-mundus.svg" alt="" id="country-flag">
+                    <span id="country-name">Waiting for Query</span>
+                </div> 
+                <!-- RESULT CONTENT -->
+                <div class="result-content" id="result-general">
+                    <!-- General -->
+                    <div class="official-name">
+                        <span class="label bold">Official Name:</span>
+                        <span class="info" id="info-official-name">- No data -</span>
+                    </div>
+                    <div class="geography-section">
+                        <p class="info"><span class="info bold" id="info-name">- No data -</span> is located in the <span class="info bold" id="info-subregion">- No data -</span> region of <span class="info bold" id="info-continent">- No data -</span>. It's spreading over <span class="info bold" id="info-area">- No data -</span>, and <span class="info" id="info-capital">its capital is <strong>- No data -</strong></span>.</p>
+                    </div>
+                    <div class="other-info">
+                        <div class="other-info-group">
+                            <div class="demographics-section group-wrapper">
+                                <span class="section-name">DEMOGRAPHICS</span>
+                                <div class="demographics-info column">
+                                    <div class="info-item">
+                                        <span class="label bold">Population:</span>
+                                        <span class="info" id="info-population">- No data -</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label bold">Density:</span>
+                                        <span class="info" id="info-density">- No data -</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label bold">Demonym:</span>
+                                        <span class="info" id="info-demonym">- No data -</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="languages-section group-wrapper">
+                                <span class="section-name">LANGUAGES</span>
+                                <div class="languages-info column">
+                                    <div class="language-item">
+                                        <span class="label bold">Official Language(s):</span>
+                                        <span class="info" id="info-languages">- No data -</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ethnicity-section group-wrapper">
+                                <span class="section-name">ETHNICITY</span>
+                                <div class="ethnicity-info column chart">
+                                    <canvas class="canvas" id="ethnicity-chart">- No data -</canvas>
+                                    <!-- This will show when data is missing -->
+                                    <div id="ethnicity-no-data" class="no-data-overlay" style="display: none;">
+                                        - No data available -
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="other-info-group">
+                            <div class="religion-section group-wrapper">
+                                <span class="section-name">RELIGION</span>
+                                <div class="religion-info column chart">
+                                    <canvas class="canvas" id="religion-chart">- No data -</canvas>
+                                    <!-- This will show when data is missing -->
+                                    <div id="religion-no-data" class="no-data-overlay" style="display: none;">
+                                        - No data available -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="economy-section group-wrapper">
+                                <span class="section-name">ECONOMY</span>
+                                <div class="economy-info column">
+                                    <div class="info-item">
+                                        <span class="label bold">Currency:</span>
+                                        <span class="info" id="info-currency">- No data -</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label bold">Symbol:</span>
+                                        <span class="info" id="info-symbol">- No data -</span>
+                                    </div>
+                                    <div class="gdp-item">
+                                        <span class="label bold">GDP per Capita:</span>
+                                        <span class="info" id="info-gdp">- No data -</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="politics-section group-wrapper">
+                                <span class="section-name">GOVERNMENT</span>
+                                <div class="politics-info column">
+                                    <div class="info-item">
+                                        <span class="label bold">Type:</span>
+                                        <span class="info" id="info-gov-type">- No data -</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label bold">Sovereign:</span>
+                                        <span class="info" id="info-gov-isSovereign">- No data -</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info" id="info-gov-sovereign-state" style="display: none;">- No data -</span>
+                                    </div>
+                                    <!-- The Leader field has not been implemented yet in RESTCountries API v4 -->
+                                    <!-- <div class="info-item">
+                                        <span class="label bold">Leader:</span>
+                                        <span class="info" id="info-gov-leader">leader</span>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="results-wrapper">
+                        <!-- World map -->
+                        <div class="worldmap" id="result-map">
+                            <div id="map"></div>
+                        </div>
+                        <!-- Weather -->
+                        <div class="forecast" id="result-weather">
+                            <div class="weather-top-section">
+                                <span class="city-name" id="capital-name">- No data -</span>
+                                <div class="weather-sub-title">
+                                    <span class="weather-sub" id="weather-sub-date">- No data -</span>
+                                </div>
+                            </div>
+                            <div class="weather-bottom-section">
+                                <div class="weather-left-subsection">
+                                    <img src="images/sunny.png" id="weather-icon"/>
+                                    <span class="weather-status" id="weather-status">(- No data -)</span>
+                                    <span class="weather-temperature" id="weather-temperature">- No data -</span>
+                                    <span class="weather-feels-like" id="weather-feels-like">(- No data -)</span>
+                                </div>
+                                <div class="weather-right-subsection">
+                                    <div class="weather-aside-wrapper">
+                                        <img src="images/wind.png" alt="">
+                                        <span class="weather-aside" id="weather-wind">- No data -</span>
+                                    </div>
+                                    <div class="weather-aside-wrapper">
+                                        <img src="images/humidity.png" alt="">
+                                        <span class="weather-aside" id="weather-humidity">- No data -</span>
+                                    </div>
+                                    <div class="weather-aside-wrapper">
+                                        <img src="images/aqi.png" alt="">
+                                        <span class="weather-aside" id="weather-airQ">- No data -</span>
+                                    </div>
+                                    <div class="three-day-forecast">
+                                        <span class="three-day-title">3-day Forecast</span>
+                                        <div class="weather-future" id="day1">
+                                            <span class="weather-future-date" id="date-day1">- No data -</span>
+                                            <div class="weather-future-wrapper">
+                                                <img src="images/sunny.png" class="weather-future-icon" id="icon-day1"/>
+                                                <div class="next-temp">
+                                                    <span class="weather-future-temp bold" id="high-day1">High: - No data -</span>
+                                                    <span class="weather-future-temp" id="low-day1">Low: - No data -</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="weather-future" id="day2">
+                                            <span class="weather-future-date" id="date-day2">- No data -</span>
+                                            <div class="weather-future-wrapper">
+                                                <img src="images/sunny.png" class="weather-future-icon" id="icon-day2"/>
+                                                <div class="next-temp">
+                                                    <span class="weather-future-temp bold" id="high-day2">High: - No data -</span>
+                                                    <span class="weather-future-temp" id="low-day2">Low: - No data -</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="weather-future" id="day3">
+                                            <span class="weather-future-date" id="date-day3">- No data -</span>
+                                            <div class="weather-future-wrapper">
+                                                <img src="images/sunny.png" class="weather-future-icon" id="icon-day3"/>
+                                                <div class="next-temp">
+                                                    <span class="weather-future-temp bold" id="high-day3">High: - No data -</span>
+                                                    <span class="weather-future-temp" id="low-day3">Low: - No data -</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" title="Back to Top">
+        <svg><use href="#icon-back-to-top"/></svg>
+    </button>
+</body>
+</html>

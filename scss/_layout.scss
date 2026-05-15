@@ -1,0 +1,403 @@
+/* TITLE */
+.title-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto;
+}
+
+#welcome, #welcome-popup {
+    font-size: 1.3em;
+    transform: translate(-13px, 30px);
+}
+
+.title {
+    font-family: "Macondo Swash Caps", cursive;
+    font-size: 6em;
+    font-weight: bold;
+    color: var(--title);
+}
+
+#subtitle, #subtitle-popup {
+    font-size: 1.4em;
+    transform: translate(-10px, -20px);
+}
+
+.main-logo {
+    width: 150px;
+    height: 150px;
+}
+
+
+/* DISPLAY */
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 80vw;
+}
+
+.display-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.top-bar {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    width: 100%;
+}
+
+/* --- Top Bar --- */
+/* -- Search Input -- */
+.input {
+    background-color: var(--accent);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 30px;
+    padding: 5px 15px 8px 15px;
+    height: 60px;
+    border-radius: 20px 20px 0 0;
+    border: 4px solid var(--accent);
+    border-bottom: none;
+    transform: translateY(4px);
+    z-index: 10;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: #ffffff;
+    padding: 3px 10px;
+    width: 65%;
+    border-radius: 15px;
+    border: 1px solid var(--accent);
+}
+
+.icon-searchbox {
+    width: 32px;
+    height: 32px;
+    fill: #000;
+}
+
+.search-box {
+    font-size: 1.3em;
+    border: none;
+    width: 100%;
+}
+
+.search-box:focus {
+    outline: none;
+}
+
+/* - Suggestion box - */
+.suggestion-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    background-color: var(--dropdown);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px 3px #00000055;
+    width: 100%;
+    margin-top: 5px;
+    padding: 3px 5px;
+    z-index: 1000;
+}
+
+.scroll-container {
+    direction: rtl;
+    margin: 2px 0 5px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#suggestion-items {
+    direction: ltr;
+    width: 100%;
+}
+
+.suggestion-title {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.suggestion-item {
+    font-size: 0.9em;
+    padding: 2px 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* - Scrollbar customization - */
+/* Width of the scrollbar */
+.scroll-container::-webkit-scrollbar {
+    margin: 3px 5px;
+    width: 3px;
+}
+
+/* Track (the background of the scrollbar path) */
+.scroll-container::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+/* Thumb (the draggable scroll indicator) */
+.scroll-container::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* -- Country list -- */
+.list-country-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+
+    span {
+        font-size: 0.7em;
+        font-style: italic;
+    }
+}
+
+.icon-list {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+}
+
+
+/* -- Settings Options -- */
+.settings-options {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: right;
+    gap: 5px;
+    padding-right: 20px;
+    height: 100%;
+}
+
+.option {
+    background-color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 8px;
+    height: fit-content;
+    transform: translateY(4px);
+    border: 4px solid var(--accent);
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: var(--accent2);
+}
+
+.option.open {
+    background-color: var(--accent2);
+}
+
+.settings-icon, .about-icon {
+    width: 36px;
+    height: 36px;
+    fill: #ffffff;
+}
+
+/* --- Main Display --- */
+.main-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: fit-content;
+}
+
+/* -- Country Name / Flag -- */
+.flag-name {
+    background-color: var(--accent2);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    width: 100%;
+    padding: 5px;
+    border-top-right-radius: 20px;
+    border: 4px solid var(--accent);
+    z-index: 1;
+}
+
+#country-flag {
+    width: 200px;
+    height: 150px;
+    margin-left: 20px;
+}
+
+#country-name {
+    display: flex;
+    justify-content: center;
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0 15px;
+    width: 100%;
+}
+
+/* -- Results Display -- */
+
+/* - Content - */
+.result-content {
+    background-color: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: stretch;
+    padding-top: 5px;
+    border-radius: 0 0 20px 20px;
+    border: 4px solid var(--accent);
+    border-top: 0;
+    margin-bottom: 30px;
+}
+
+.label {
+    font-size: 1.1em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.official-name {
+    font-size: 1.6em;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    width: 100%;
+    line-height: 1.4;
+}
+
+.other-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 2px solid var(--accent);
+}
+
+.other-info-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.group-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.geography-section {
+    padding: 0 10px;
+}
+
+.demographics-section {
+    background-color: rgba(127, 255, 212, 0.3);
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.languages-section {
+    background-color: #ffda0a66;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.ethnicity-section {
+    background-color: #1e0aff66;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    gap: 10px;
+}
+
+.ethnicity-info, .religion-info {
+    position: relative;
+}
+
+.no-data-overlay {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.religion-section {
+    background-color: #ff0aef66;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    gap: 10px;
+}
+
+.economy-section {
+    background-color: #ff94e666;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.politics-section {
+    background-color: #ff5e8166;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.section-name {
+    font-size: 1.2em;
+    opacity: 0.6;
+}
+
+.language-item, .gdp-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}

@@ -1,0 +1,58 @@
+/* --- Map --- */
+.results-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: left;
+    width: 100%;
+    min-height: 300px;
+    height: fit-content;
+}
+
+.worldmap, .forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: stretch;
+    z-index: 10;
+}
+
+.worldmap {
+    border-bottom-left-radius: 20px;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    padding: 5px;
+    border-bottom-left-radius: 16px;
+}
+
+/* -- Marker (Capital pin) -- */
+.custom-div-icon {
+    background: none !important;
+    border: none !important;
+
+    svg {
+        display: block;
+        width: 32px;
+        height: 32px;
+        fill: var(--accent);
+    }
+}
+
+.city-label-div {
+    background-color: var(--glass);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 2px 8px;
+    width: fit-content;
+    white-space: nowrap;
+    pointer-events: none;
+}

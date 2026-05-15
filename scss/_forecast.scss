@@ -1,0 +1,154 @@
+/* --- Forecast --- */
+.forecast {
+    border-left: 2px solid var(--accent);
+    border-bottom-right-radius: 15px;
+}
+
+.weather-top-section  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.city-name {
+    font-size: 1.6em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.weather-sub {
+    font-size: 1.3em;
+    padding: 5px;
+}
+
+.weather-sub-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.weather-bottom-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: stretch;
+    margin-top: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.weather-left-subsection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding: 10px;
+    gap: 10px;
+}
+
+#weather-icon {
+    width: 200px;
+    height: 200px;
+}
+
+.weather-status {
+    display: inline-block;
+    font-size: 1.2em;
+    margin-top: -15px;
+}
+
+.weather-temperature {
+    font-size: 4em;
+}
+
+.weather-feels-like {
+    font-size: 2em;
+}
+
+.weather-right-subsection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    width: 40%;
+    gap: 5px;
+    padding: 5px 0;
+}
+
+.weather-aside-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding-left: 20px;
+
+    img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+#weather-airQ {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 2px 5px;
+}
+
+.three-day-forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: var(--accent2);
+    border: 2px solid var(--accent);
+    border-radius: 23px;
+    box-shadow: 2px 3px 5px 3px #00000055;
+    color: #000;
+}
+
+.three-day-title {
+    display: flex;
+    padding: 15px 10px 15px 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+    border-radius: 20px 20px 0 0;
+}
+
+.weather-future {
+    background-color: #fe824d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: stretch;
+}
+
+#day2 {
+    border-top: 2px solid var(--accent);
+    border-bottom:  2px solid var(--accent);
+}
+
+#day3 {
+    border-radius: 0 0 20px 20px;
+}
+
+.weather-future-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.weather-future-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.next-temp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.8em;
+}

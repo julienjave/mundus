@@ -1,0 +1,1437 @@
+@charset "UTF-8";
+/* VARIABLES */
+/* --- Themes --- */
+[data-theme=default] {
+  --accent: #000080;
+  --glass: #00008030;
+  --dropdown: #ffffff85;
+  --accent2: #00ccff;
+  --surface: #95ddff;
+  --bg: #b6eaff;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+[data-theme=blue] {
+  --accent: #2c41ff;
+  --glass: #2c41ff30;
+  --dropdown: #ffffff85;
+  --accent2: #7f8cff;
+  --surface: #acb4ff;
+  --bg: #dbdeff;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+[data-theme=candy] {
+  --accent: #ff23f8;
+  --glass: #ff23f830;
+  --dropdown: #ffffff85;
+  --accent2: #ff76fa;
+  --surface: #ffb0fc;
+  --bg: #ffd6fe;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+[data-theme=rhubarb] {
+  --accent: #b83047;
+  --glass: #b8304730;
+  --dropdown: #ffffff85;
+  --accent2: #ff5572;
+  --surface: #ff8b9f;
+  --bg: #ffcfd7;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+[data-theme=rainforest] {
+  --accent: #007e08;
+  --glass: #007e0830;
+  --dropdown: #ffffff85;
+  --accent2: #37c049;
+  --surface: #7aee95;
+  --bg: #d3ffe0;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+[data-theme=citrus] {
+  --accent: #ff8800;
+  --glass: #2c41ff30;
+  --dropdown: #ffffff85;
+  --accent2: #ffb647;
+  --surface: #fdff80;
+  --bg: #ffffd7;
+  --title: #000080;
+  --text: #000000;
+  --textAccent: #ffffff;
+}
+
+/* --- Modes --- */
+[data-mode=dark] {
+  --surface: #1f1f1f;
+  --bg: #161616;
+  --dropdown: #000000cc;
+  --title: #00ccff;
+  --text: #ffffff;
+}
+
+/* GENERAL SETTINGS */
+/* --- Box Sizing --- */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* --- General --- */
+body {
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Chiron GoRound TC", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  color: var(--text);
+}
+
+header, .welcome-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* POPUPS */
+/* --- Welcome Popup --- */
+.welcome-popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.welcome-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+  border: 4px solid var(--accent);
+  border-radius: 20px;
+  width: 70%;
+  height: 70%;
+  margin: 5% auto;
+}
+
+.welcome-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 20px 0 20px;
+}
+.welcome-main p {
+  font-size: 1.2em;
+}
+
+.welcome-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  background-color: #ffffff;
+  padding: 3px 10px;
+  width: 500px;
+  border-radius: 15px;
+  border: 1px solid var(--accent);
+}
+
+/* --- General Popup --- */
+.popup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: color-mix(in oklab, var(--textAccent), transparent 20%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+  border: 4px solid var(--accent);
+  border-radius: 20px;
+  width: fit-content;
+  min-width: 50%;
+  max-width: 90%;
+  height: fit-content;
+  max-height: 80%;
+}
+
+.popup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--accent);
+  color: var(--textAccent);
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 5px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  max-height: 77%;
+}
+
+.popup-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.close-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 15px 10px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: var(--accent2);
+}
+
+/* - Popup Country List - */
+.popup-note {
+  font-size: 0.7em;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#list-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list-region-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  font-size: 1em;
+  background-color: var(--accent2);
+  color: #ffffff;
+}
+
+.list-country-name {
+  font-size: 0.8em;
+  color: var(--text);
+  cursor: pointer;
+  margin: 0 2px;
+  padding: 1px 2px;
+}
+
+.list-country-name:hover {
+  background-color: color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* - Scrollbar customization */
+/* Width of the scrollbar */
+#list-content::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track (the background of the scrollbar path) */
+#list-content::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+/* Thumb (the draggable scroll indicator) */
+#list-content::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+/* - Error Popup - */
+#error-wrapper {
+  height: fit-content;
+}
+
+#error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#error-message-content {
+  font-style: italic;
+  margin: 20px;
+}
+
+/* LOADER */
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3333333333);
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+  border: 4px solid var(--accent);
+  border-radius: 20px;
+  font-style: italic;
+  width: 50%;
+  height: 50%;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--accent2);
+  border-top: 5px solid var(--accent);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* DROPDOWN */
+.about-wrapper, .settings-wrapper {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--dropdown);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+  border: 4px solid var(--accent);
+  border-radius: 15px 20px 15px 15px;
+  padding: 3px 10px;
+  width: fit-content;
+  z-index: 100;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+.dropdown.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdown-label {
+  margin: 4px 8px 8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.85;
+  transition: color 0.25s;
+}
+
+#dropdown {
+  width: 200px;
+  top: 100%;
+  right: -85px;
+}
+
+#dropdown-about {
+  width: 550px;
+  top: 100%;
+  right: -20px;
+}
+
+/* -- Color Palette Option -- */
+.theme-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 5px;
+  padding: 2px 5px;
+  width: 100%;
+}
+
+.theme-option:hover {
+  background-color: var(--glass);
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--text);
+  border-radius: 20px;
+}
+
+/* - Checkmark shown only on the active/saved theme - */
+.checkmark {
+  margin-left: auto;
+  color: var(--accent);
+  font-weight: 500;
+  opacity: 0;
+  transition: color 0.25s;
+}
+
+.theme-option.active .checkmark {
+  opacity: 1;
+}
+
+/* -- Light/Dark Mode -- */
+.mode-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  margin: 0 auto 10px;
+}
+.mode-option svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text);
+  transition: fill 0.25s;
+}
+
+#mode-toggle {
+  appearance: none; /* hides the default checkbox */
+  width: 40px;
+  height: 22px;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+/* - The sliding circle — drawn with ::before pseudo-element - */
+#mode-toggle::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 0;
+  left: 0;
+  background-color: var(--bg);
+  border: 2px solid var(--accent2);
+  border-radius: 50%;
+  transition: background-color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+/* When checked, slide the circle to the right */
+#mode-toggle:checked::before {
+  transform: translateX(18px);
+}
+
+/* ABOUT */
+.about-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-option p {
+  margin: 0 auto 10px;
+}
+
+.link-lib {
+  text-decoration: none;
+}
+
+.lib-name {
+  display: inline-block;
+  /* flex-direction: row; */
+  justify-content: center;
+  background-color: #ffffff;
+  width: fit-content;
+  margin-top: 5px;
+  padding: 2px 7px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.lib-name-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#lib-chart {
+  color: #000000;
+  font-weight: 500;
+}
+
+.leaflet-logo {
+  height: 24px;
+}
+
+.chart-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.link-api {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--accent);
+  transition: color 0.25s;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2px auto 10px;
+}
+.link svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  fill: var(--text);
+  transition: fill 0.25s;
+}
+.link a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text);
+  transition: color 0.25s;
+}
+
+.link a:hover, .link-api:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin: 20px auto 10px;
+  font-style: italic;
+}
+
+/* TITLE */
+.title-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+}
+
+#welcome, #welcome-popup {
+  font-size: 1.3em;
+  transform: translate(-13px, 30px);
+}
+
+.title {
+  font-family: "Macondo Swash Caps", cursive;
+  font-size: 6em;
+  font-weight: bold;
+  color: var(--title);
+}
+
+#subtitle, #subtitle-popup {
+  font-size: 1.4em;
+  transform: translate(-10px, -20px);
+}
+
+.main-logo {
+  width: 150px;
+  height: 150px;
+}
+
+/* DISPLAY */
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  width: 80vw;
+}
+
+.display-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.top-bar {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  width: 100%;
+}
+
+/* --- Top Bar --- */
+/* -- Search Input -- */
+.input {
+  background-color: var(--accent);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 30px;
+  padding: 5px 15px 8px 15px;
+  height: 60px;
+  border-radius: 20px 20px 0 0;
+  border: 4px solid var(--accent);
+  border-bottom: none;
+  transform: translateY(4px);
+  z-index: 10;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  background-color: #ffffff;
+  padding: 3px 10px;
+  width: 65%;
+  border-radius: 15px;
+  border: 1px solid var(--accent);
+}
+
+.icon-searchbox {
+  width: 32px;
+  height: 32px;
+  fill: #000;
+}
+
+.search-box {
+  font-size: 1.3em;
+  border: none;
+  width: 100%;
+}
+
+.search-box:focus {
+  outline: none;
+}
+
+/* - Suggestion box - */
+.suggestion-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  background-color: var(--dropdown);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px 3px rgba(0, 0, 0, 0.3333333333);
+  width: 100%;
+  margin-top: 5px;
+  padding: 3px 5px;
+  z-index: 1000;
+}
+
+.scroll-container {
+  direction: rtl;
+  margin: 2px 0 5px 0;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+#suggestion-items {
+  direction: ltr;
+  width: 100%;
+}
+
+.suggestion-title {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.suggestion-item {
+  font-size: 0.9em;
+  padding: 2px 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* - Scrollbar customization - */
+/* Width of the scrollbar */
+.scroll-container::-webkit-scrollbar {
+  margin: 3px 5px;
+  width: 3px;
+}
+
+/* Track (the background of the scrollbar path) */
+.scroll-container::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+/* Thumb (the draggable scroll indicator) */
+.scroll-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+/* -- Country list -- */
+.list-country-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+}
+.list-country-btn span {
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+.icon-list {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+}
+
+/* -- Settings Options -- */
+.settings-options {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: right;
+  gap: 5px;
+  padding-right: 20px;
+  height: 100%;
+}
+
+.option {
+  background-color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  height: fit-content;
+  transform: translateY(4px);
+  border: 4px solid var(--accent);
+  border-radius: 15px 15px 0 0;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: var(--accent2);
+}
+
+.option.open {
+  background-color: var(--accent2);
+}
+
+.settings-icon, .about-icon {
+  width: 36px;
+  height: 36px;
+  fill: #ffffff;
+}
+
+/* --- Main Display --- */
+.main-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: fit-content;
+}
+
+/* -- Country Name / Flag -- */
+.flag-name {
+  background-color: var(--accent2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  width: 100%;
+  padding: 5px;
+  border-top-right-radius: 20px;
+  border: 4px solid var(--accent);
+  z-index: 1;
+}
+
+#country-flag {
+  width: 200px;
+  height: 150px;
+  margin-left: 20px;
+}
+
+#country-name {
+  display: flex;
+  justify-content: center;
+  font-size: 4em;
+  font-weight: bold;
+  margin: 0 15px;
+  width: 100%;
+}
+
+/* -- Results Display -- */
+/* - Content - */
+.result-content {
+  background-color: var(--surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: stretch;
+  padding-top: 5px;
+  border-radius: 0 0 20px 20px;
+  border: 4px solid var(--accent);
+  border-top: 0;
+  margin-bottom: 30px;
+}
+
+.label {
+  font-size: 1.1em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.official-name {
+  font-size: 1.6em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.other-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 2px solid var(--accent);
+}
+
+.other-info-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+.group-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.geography-section {
+  padding: 0 10px;
+}
+
+.demographics-section {
+  background-color: rgba(127, 255, 212, 0.3);
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.languages-section {
+  background-color: rgba(255, 218, 10, 0.4);
+  grid-column-start: 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.ethnicity-section {
+  background-color: rgba(30, 10, 255, 0.4);
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  gap: 10px;
+}
+
+.ethnicity-info, .religion-info {
+  position: relative;
+}
+
+.no-data-overlay {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.religion-section {
+  background-color: rgba(255, 10, 239, 0.4);
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  gap: 10px;
+}
+
+.economy-section {
+  background-color: rgba(255, 148, 230, 0.4);
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.politics-section {
+  background-color: rgba(255, 94, 129, 0.4);
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.section-name {
+  font-size: 1.2em;
+  opacity: 0.6;
+}
+
+.language-item, .gdp-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.charts {
+  position: relative;
+  width: 250px;
+  height: fit-content;
+}
+
+/* --- Map --- */
+.results-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: left;
+  width: 100%;
+  min-height: 300px;
+  height: fit-content;
+}
+
+.worldmap, .forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: stretch;
+  z-index: 10;
+}
+
+.worldmap {
+  border-bottom-left-radius: 20px;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  padding: 5px;
+  border-bottom-left-radius: 16px;
+}
+
+/* -- Marker (Capital pin) -- */
+.custom-div-icon {
+  background: none !important;
+  border: none !important;
+}
+.custom-div-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  fill: var(--accent);
+}
+
+.city-label-div {
+  background-color: var(--glass);
+  border: 1.5px solid var(--accent);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+  color: #ffffff;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 2px 8px;
+  width: fit-content;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* --- Forecast --- */
+.forecast {
+  border-left: 2px solid var(--accent);
+  border-bottom-right-radius: 15px;
+}
+
+.weather-top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.city-name {
+  font-size: 1.6em;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.weather-sub {
+  font-size: 1.3em;
+  padding: 5px;
+}
+
+.weather-sub-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.weather-bottom-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: stretch;
+  margin-top: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.weather-left-subsection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  padding: 10px;
+  gap: 10px;
+}
+
+#weather-icon {
+  width: 200px;
+  height: 200px;
+}
+
+.weather-status {
+  display: inline-block;
+  font-size: 1.2em;
+  margin-top: -15px;
+}
+
+.weather-temperature {
+  font-size: 4em;
+}
+
+.weather-feels-like {
+  font-size: 2em;
+}
+
+.weather-right-subsection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  width: 40%;
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.weather-aside-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-left: 20px;
+}
+.weather-aside-wrapper img {
+  width: 28px;
+  height: 28px;
+}
+
+#weather-airQ {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 2px 5px;
+}
+
+.three-day-forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  background-color: var(--accent2);
+  border: 2px solid var(--accent);
+  border-radius: 23px;
+  box-shadow: 2px 3px 5px 3px rgba(0, 0, 0, 0.3333333333);
+  color: #000;
+}
+
+.three-day-title {
+  display: flex;
+  padding: 15px 10px 15px 10px;
+  font-size: 1.5em;
+  color: #ffffff;
+  border-radius: 20px 20px 0 0;
+}
+
+.weather-future {
+  background-color: #fe824d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: stretch;
+}
+
+#day2 {
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+#day3 {
+  border-radius: 0 0 20px 20px;
+}
+
+.weather-future-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.weather-future-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.next-temp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.8em;
+}
+
+/* BACK TO TOP BUTTON */
+#backToTop {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  /* -- Styling -- */
+  background-color: var(--accent);
+  border: 4px solid var(--accent);
+  border-radius: 60px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1450980392);
+  /* -- Hidden by default -- */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.25s, border-color 0.25s;
+}
+
+#backToTop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#backToTop svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--textAccent);
+  transition: fill 0.25s;
+}
+
+#backToTop:hover {
+  background-color: var(--accent2);
+  transition: background-color 0.25s;
+}
+
+/* RESPONSIVENESS */
+/* --- Small Desktops --- */
+@media screen and (max-width: 1200px) {
+  .display {
+    width: 90vw;
+  }
+  .welcome-wrapper {
+    width: 80%;
+  }
+  #backToTop {
+    right: 10px;
+  }
+}
+@media screen and (max-width: 1112px) {
+  .welcome-wrapper {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1082px) {
+  .display {
+    width: 96vw;
+  }
+}
+@media screen and (max-width: 983px) {
+  #weather-icon {
+    width: 180px;
+    height: 180px;
+  }
+  body {
+    font-size: 14px;
+  }
+  .main-logo {
+    width: 125px;
+    height: 125px;
+  }
+  .weather-temperature {
+    font-size: 3em;
+  }
+  .weather-feels-like {
+    font-size: 1.5em;
+  }
+  .three-day-title {
+    font-size: 1.3em;
+  }
+  .chart {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 889px) {
+  .welcome-wrapper {
+    width: 95%;
+  }
+  .weather-left-subsection, .weather-right-subsection {
+    width: 50%;
+  }
+  .weather-right-subsection {
+    padding-left: 15px;
+  }
+}
+@media screen and (max-width: 843px) {
+  #country-flag {
+    width: 150px;
+    height: 100px;
+    margin-left: 5px;
+  }
+  #country-name {
+    font-size: 3em;
+    margin: 0 5px;
+  }
+  .chart {
+    width: 150px;
+  }
+  .weather-feels-like {
+    font-size: 1.2em;
+  }
+}
+/* --- Tablets --- */
+@media screen and (max-width: 780px) {
+  body {
+    font-size: 15px;
+  }
+  .main-logo {
+    width: 135px;
+    height: 135px;
+  }
+  .welcome-input-wrapper {
+    width: 400px;
+  }
+  .other-info {
+    flex-direction: column;
+  }
+  .chart {
+    width: 250px;
+  }
+  .results-wrapper {
+    flex-direction: column;
+  }
+  .worldmap, .forecast {
+    width: 100%;
+    height: fit-content;
+  }
+  .worldmap {
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+  }
+  .forecast {
+    border-left: none;
+    border-bottom-left-radius: 16px;
+    padding-bottom: 15px;
+  }
+  .weather-left-subsection {
+    width: 60%;
+  }
+  .weather-right-subsection {
+    width: 40%;
+  }
+  #weather-icon {
+    width: 200px;
+    height: 200px;
+  }
+  .weather-temperature {
+    font-size: 4em;
+  }
+  .weather-feels-like {
+    font-size: 2em;
+  }
+  .three-day-title {
+    font-size: 1.5em;
+  }
+  .three-day-forecast {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 725px) {
+  body {
+    font-size: 14px;
+  }
+  .main-logo {
+    width: 125px;
+    height: 125px;
+  }
+}
+@media screen and (max-width: 603px) {
+  .welcome-input-wrapper {
+    width: 300px;
+  }
+  #country-name {
+    font-size: 2.5em;
+  }
+}
+@media screen and (max-width: 588px) {
+  #dropdown-about {
+    width: 450px;
+  }
+  .three-day-title {
+    font-size: 1.2em;
+  }
+  .next-temp {
+    font-size: 0.7em;
+  }
+}
+/* --- Phones --- */
+@media screen and (max-width: 534px) {
+  .welcome-header {
+    flex-direction: column;
+    gap: 0;
+  }
+  .popup-title {
+    font-size: 1.6em;
+  }
+  .display {
+    width: 96vw;
+  }
+  .other-info-group {
+    display: flex;
+    flex-direction: column;
+  }
+  #country-name {
+    font-size: 2em;
+  }
+  #country-flag {
+    width: 125px;
+    height: 75px;
+  }
+  #weather-icon {
+    width: 150px;
+    height: 150px;
+  }
+  .weather-temperature {
+    font-size: 3em;
+  }
+  .weather-feels-like {
+    font-size: 1.5em;
+  }
+  .weather-left-subsection, .weather-right-subsection {
+    width: 50%;
+  }
+  .weather-right-subsection {
+    padding-left: 15px;
+  }
+  .three-day-forecast {
+    width: 90%;
+  }
+  .three-day-title {
+    font-size: 1.4em;
+  }
+  .next-temp {
+    font-size: 0.9em;
+  }
+  #backToTop {
+    bottom: 10px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,83 @@
+/* VARIABLES */
+
+/* --- Themes --- */
+[data-theme = 'default'] {
+    --accent: #000080;
+    --glass: #00008030;
+    --dropdown: #ffffff85;
+    --accent2: #00ccff;
+    --surface: #95ddff;
+    --bg: #b6eaff;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+[data-theme = 'blue'] {
+    --accent: #2c41ff;
+    --glass: #2c41ff30;
+    --dropdown: #ffffff85;
+    --accent2: #7f8cff;
+    --surface: #acb4ff;
+    --bg: #dbdeff;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+[data-theme = 'candy'] {
+    --accent: #ff23f8;
+    --glass: #ff23f830;
+    --dropdown: #ffffff85;
+    --accent2: #ff76fa;
+    --surface: #ffb0fc;
+    --bg: #ffd6fe;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+[data-theme = 'rhubarb'] {
+    --accent: #b83047;
+    --glass: #b8304730;
+    --dropdown: #ffffff85;
+    --accent2: #ff5572;
+    --surface: #ff8b9f;
+    --bg: #ffcfd7;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+[data-theme = 'rainforest'] {
+    --accent: #007e08;
+    --glass: #007e0830;
+    --dropdown: #ffffff85;
+    --accent2: #37c049;
+    --surface: #7aee95;
+    --bg: #d3ffe0;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+[data-theme = 'citrus'] {
+    --accent: #ff8800;
+    --glass: #2c41ff30;
+    --dropdown: #ffffff85;
+    --accent2: #ffb647;
+    --surface: #fdff80;
+    --bg: #ffffd7;
+    --title: #000080;
+    --text: #000000;
+    --textAccent: #ffffff;
+}
+
+/* --- Modes --- */
+[data-mode = 'dark'] {
+    --surface: #1f1f1f;
+    --bg: #161616;
+    --dropdown: #000000cc;
+    --title: #00ccff;
+    --text: #ffffff;
+}

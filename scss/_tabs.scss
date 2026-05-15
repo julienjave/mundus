@@ -1,0 +1,215 @@
+/* DROPDOWN */
+.about-wrapper, .settings-wrapper {
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+    border: 4px solid var(--accent);
+    border-radius: 15px 20px 15px 15px;
+    padding: 3px 10px;
+    width: fit-content;
+    z-index: 100;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+.dropdown.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropdown-label {
+    margin: 4px 8px 8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.85;
+    transition: color 0.25s;
+}
+
+#dropdown {
+    width: 200px;
+    top: 100%;
+    right: -85px;
+}
+
+#dropdown-about {
+    width: 550px;
+    top: 100%;
+    right: -20px;
+}
+
+/* -- Color Palette Option -- */
+.theme-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 5px;
+    padding: 2px 5px;
+    width: 100%;
+}
+
+.theme-option:hover {
+    background-color: var(--glass);
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.swatch {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--text);
+    border-radius: 20px;
+}
+
+/* - Checkmark shown only on the active/saved theme - */
+.checkmark {
+    margin-left: auto;
+    color: var(--accent);
+    font-weight: 500;
+    opacity: 0;
+    transition: color 0.25s;
+}
+
+.theme-option.active .checkmark {
+    opacity: 1;
+}
+
+/* -- Light/Dark Mode -- */
+.mode-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    margin: 0 auto 10px;
+
+    svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--text);
+        transition: fill 0.25s;
+    }
+}
+
+#mode-toggle {
+    appearance: none; /* hides the default checkbox */
+    width: 40px;
+    height: 22px;
+    position: relative;
+    cursor: pointer;
+    background-color: var(--surface);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+/* - The sliding circle — drawn with ::before pseudo-element - */
+#mode-toggle::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 0;
+    left: 0;
+    background-color: var(--bg);
+    border: 2px solid var(--accent2);
+    border-radius: 50%;
+    transition: background-color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+/* When checked, slide the circle to the right */
+#mode-toggle:checked::before {
+    transform: translateX(18px);
+}
+
+/* ABOUT */
+.about-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        margin: 0 auto 10px;
+    }
+}
+
+.link-lib {
+    text-decoration: none;
+}
+
+.lib-name {
+    display: inline-block;
+    /* flex-direction: row; */
+    justify-content: center;
+    background-color: #ffffff;
+    width: fit-content;
+    margin-top: 5px;
+    padding: 2px 7px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.lib-name-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#lib-chart {
+    color: #000000;
+    font-weight: 500;
+}
+
+.leaflet-logo {
+    height: 24px;
+}
+
+.chart-logo {
+    width: 24px;
+    height: 24px;
+}
+
+.link-api {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--accent);
+    transition: color 0.25s;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2px auto 10px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        fill: var(--text);
+        transition: fill 0.25s;
+    }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: var(--text);
+        transition: color 0.25s;
+    }
+}
+
+.link a:hover, .link-api:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px auto 10px;
+    font-style: italic;
+}
+

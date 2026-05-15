@@ -1,0 +1,43 @@
+/* BACK TO TOP BUTTON */
+#backToTop {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    /* -- Styling -- */
+    background-color: var(--accent);
+    border: 4px solid var(--accent);
+    border-radius: 60px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #00000025;
+
+    /* -- Hidden by default -- */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, background-color 0.25s, border-color 0.25s;
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTop svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--textAccent);
+    transition: fill 0.25s;
+}
+
+#backToTop:hover {
+    background-color: var(--accent2);
+    transition: background-color 0.25s;
+}
+

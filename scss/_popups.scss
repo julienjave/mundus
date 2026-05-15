@@ -1,0 +1,238 @@
+/* POPUPS */
+/* --- Welcome Popup --- */
+.welcome-popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000cc;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.welcome-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 4px solid var(--accent);
+    border-radius: 20px;
+    width: 70%;
+    height: 70%;
+    margin: 5% auto;
+}
+
+.welcome-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 20px 0 20px;
+
+    p {
+        font-size: 1.2em;
+    }
+}
+
+.welcome-input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: #ffffff;
+    padding: 3px 10px;
+    width: 500px;
+    border-radius: 15px;
+    border: 1px solid var(--accent);
+}
+
+/* --- General Popup --- */
+.popup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: color-mix(in oklab, var(--textAccent), transparent 20%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Required for Safari */
+    border: 4px solid var(--accent);
+    border-radius: 20px;
+    width: fit-content;
+    min-width: 50%;
+    max-width: 90%;
+    height: fit-content;
+    max-height: 80%;
+}
+
+.popup-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--accent);
+    color: var(--textAccent);
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    max-height: 77%;
+}
+
+.popup-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+.close-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background-color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin: 15px 10px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: var(--accent2);
+}
+
+/* - Popup Country List - */
+.popup-note {
+    font-size: 0.7em;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#list-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list-region-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    font-size: 1em;
+    background-color: var(--accent2);
+    color: #ffffff;
+}
+
+.list-country-name {
+    font-size: 0.8em;
+    color: var(--text);
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 1px 2px;
+}
+
+.list-country-name:hover {
+    background-color: color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* - Scrollbar customization */
+/* Width of the scrollbar */
+#list-content::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track (the background of the scrollbar path) */
+#list-content::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+/* Thumb (the draggable scroll indicator) */
+#list-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+
+/* - Error Popup - */
+#error-wrapper {
+    height: fit-content;
+}
+
+#error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+#error-message-content {
+    font-style: italic;
+    margin: 20px;
+}
+
+/* LOADER */
+.popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000055;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    border: 4px solid var(--accent);
+    border-radius: 20px;
+    font-style: italic;
+    width: 50%;
+    height: 50%;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--accent2);
+    border-top: 5px solid var(--accent);
+    border-radius: 50%;
+    margin-bottom: 15px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
