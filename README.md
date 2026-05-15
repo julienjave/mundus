@@ -4,7 +4,7 @@
 
 [Live Demo](https://julienjave.github.io/mundus/)
 
-![Mundus Demo](https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb)
+https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb
 
 
 ## 1. Features
