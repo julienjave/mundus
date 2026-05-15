@@ -4,7 +4,7 @@
 
 [Live Demo](https://julienjave.github.io/mundus/)
 
-https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb
+<video src="https://github.com/user-attachments/assets/ed6e7bfe-f2ee-4953-bfee-24d83c6e2fbb" autoplay loop muted playsinline width="100%"></video>
 
 
 ## 1. Features
