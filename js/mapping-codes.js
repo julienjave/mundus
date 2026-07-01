@@ -274,7 +274,7 @@ const southAsia = ['af', 'bg', 'bt', 'ce', 'in', 'io', 'mv', 'np', 'pk']
 function getFactBookFilePath(country) {
   const region = country.region
   const subregion = country.subregion
-  const countryCodeIso2 = country.cca2
+  const countryCodeIso2 = country.codes.alpha_2
 
   const file = convertToFIPS(countryCodeIso2)
   const folder = regionMappingToFactBook(region, subregion, file)

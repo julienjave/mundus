@@ -7,6 +7,10 @@
 ![Mundus Demo](docs/assets/mundus-demo.gif)
 
 
+*Note: Because RESTCountries API changed and now is asking for an API key, I had to create after initial development and deployment a serverless proxy to hide that API key, and made some adjustments to have Mundus communicate with this proxy instead of directly with RESTCountries API as it was doing initially.
+You can find the repository for the proxy [here](https://github.com/julienjave/mundus-proxy).*
+
+
 ## 1. Features
 
 - **Real-time Insights:** Aggregates data from multiple sources - RESTCountries, The World Factbook, World Bank Open Data and Open-Meteo.

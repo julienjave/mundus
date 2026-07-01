@@ -83,24 +83,28 @@ async function requestCountryInfo(countryRequested) {
         const country = validateCountry(countryRequested)
 
         // 1. Get the basics from RESTCountry API
-        const response = await fetch(`https://restcountries.com/v4/name/${country}`) // v4 is a preview so some fields are missing
+        const response = await fetch(`https://mundus-proxy.onrender.com/country/${country}`)
         
         if(response.ok) {
             const countries = await response.json()
 
-            let correctCountry = countries[0]
+            const countriesArray = countries.data.objects
 
-            for (let i=0; i<countries.length; i++) {
-                if (countries[i].name.common.toLowerCase() === country.toLowerCase()) {
-                    correctCountry = countries[i]
+            // let correctCountry = countries[0]
+            let correctCountry = countriesArray[0]
+
+            for (let i=0; i<countriesArray.length; i++) {
+                if (countriesArray[i].names.common.toLowerCase() === country.toLowerCase()) {
+                    correctCountry = countriesArray[i]
                 }
             }
 
-            const countryCodeIso2 = correctCountry.cca2
-            const countryCodeIso3 = correctCountry.cca3
+            const countryCodeIso2 = correctCountry.codes.alpha_2
+            const countryCodeIso3 = correctCountry.codes.alpha_3
             const pathToFactBook = getFactBookFilePath(correctCountry)
-            const capitalName = correctCountry.capital[0]
-            const [capLat, capLng] = correctCountry.capitalInfo.latlng
+            const capitalName = correctCountry.capitals[0].name
+            const capLat = correctCountry.capitals[0].coordinates.lat
+            const capLng = correctCountry.capitals[0].coordinates.lng
 
             // 2. Get the missing fields from other APIs
             const [gdpData, extraData, weatherData, airQData] = await Promise.all([
@@ -160,15 +164,15 @@ function validateCountry(country) {
     }
 }
 
-function validateCapital(capital, cca3) {
-    if (capital.length === 1) {
-        return `its capital is <strong>${capital}</strong>`
+function validateCapital(capitals, cca3) {
+    if (capitals.length === 1) {
+        return `its capital is <strong>${capitals[0]}</strong>`
     }
     if (cca3 === 'ZAF') { // South Africa
-        return `its capitals are <strong>${capital[0]}</strong> <em>(Administrative)</em>, <strong>${capital[1]}</strong> <em>(Legislative)</em>, and <strong>${capital[2]}</strong> <em>(Judicial)</em>`
+        return `its capitals are <strong>${capitals[0]}</strong> <em>(Administrative)</em>, <strong>${capitals[1]}</strong> <em>(Legislative)</em>, and <strong>${capitals[2]}</strong> <em>(Judicial)</em>`
     }
     if (cca3 === 'PSE') { // Palestine
-        return `its capitals are <strong>${capital[0]}</strong> <em>(Administrative)</em>, <strong>${capital[1]}</strong> <em>(Proclaimed)</em>`
+        return `its capitals are <strong>${capitals[0]}</strong> <em>(Administrative)</em>, <strong>${capitals[1]}</strong> <em>(Proclaimed)</em>`
     }
 }
 
@@ -207,20 +211,21 @@ async function safeFetchJson(url) {
 // --- General Information --------------------------------------------------------------------------------------
 function populateCountryInfo(country, gdpPerCapita) {
     // -- Flag & Names --
-    flagCountry.src = country.flag.svg
-    flagCountry.alt = country.flag.alt
-    countryName.innerText = country.name.common.toUpperCase()
-    countryNameOfficial.innerText = country.name.official
+    flagCountry.src = country.flag.url_svg
+    flagCountry.alt = country.flag.description
+    countryName.innerText = country.names.common.toUpperCase()
+    countryNameOfficial.innerText = country.names.official
     // -- Geography --
-    commonName.innerText = country.name.common
+    commonName.innerText = country.names.common
     subRegion.innerText = country.subregion
     continent.innerText = country.continents[0]
-    area.innerText = `${country.area.toLocaleString()} km²`
-    capitalCity.innerHTML = validateCapital(country.capital, country.cca3)
+    area.innerText = `${country.area.kilometers.toLocaleString()} km²`
+    capitalCity.innerHTML = validateCapital(country.capitals, country.codes.alpha_3)
     // -- Demographics --
     population.innerText = country.population.toLocaleString()
-    density.innerText = `${country.density.toLocaleString()} /km²`
-    demonym.innerText = country.demonyms[0].male
+    // density.innerText = `${country.density.toLocaleString()} /km²`
+    density.innerText = `n/a /km²`
+    demonym.innerText = country.demonyms.eng.m
     // -- Languages --
     languagesOfficial.innerText = getLanguages(country.languages)
     // -- Ethnicity & Religion Charts --
@@ -231,12 +236,12 @@ function populateCountryInfo(country, gdpPerCapita) {
     symbol.innerText = country.currencies[0].symbol
     gdp.innerText = gdpPerCapita
     // -- Politics --
-    govType.innerText = country.government.type
+    govType.innerText = country.government_type
     // govLeader.innerText = 
-    govSovereignty.innerText = country.independent ? `Yes` : `No`
+    govSovereignty.innerText = country.classification.sovereign ? `Yes` : `No`
     govSovereignState.style.display = "none"
-    if (!country.independent) {
-        govSovereignState.innerText = `(${convertToName(country.sovereignState)})`
+    if (!country.classification.sovereign) {
+        govSovereignState.innerText = `(${convertToName(country.parent.alpha_3)})`
         govSovereignState.style.display = "flex"
     }
 }
