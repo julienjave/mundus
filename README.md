@@ -65,6 +65,7 @@ This script queries the RESTCountries API to generate a clean, standardized JSON
 ```bash
 node list-all-countries.js
 ```
+*<u>Note</u>: Since RESTCountries API changed and now asks for an API key and limits the results returned on the free-tier to 100, this tool doesn't work anymore as it can't return all the countries.*
 
 
 ## 4. Project Structure
