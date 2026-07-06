@@ -223,8 +223,12 @@ function populateCountryInfo(country, gdpPerCapita) {
     capitalCity.innerHTML = validateCapital(country.capitals, country.codes.alpha_3)
     // -- Demographics --
     population.innerText = country.population.toLocaleString()
-    // density.innerText = `${country.density.toLocaleString()} /km²`
-    density.innerText = `n/a /km²`
+    if (country.population && country.area.kilometers && country.area.kilometers > 0) {
+        const popDensity = country.population / country.area.kilometers
+        density.innerText = `${popDensity.toFixed(1).toLocaleString()} people/km²`
+    } else {
+        density.innerText = `- No data available -`
+    }
     demonym.innerText = country.demonyms.eng.m
     // -- Languages --
     languagesOfficial.innerText = getLanguages(country.languages)
