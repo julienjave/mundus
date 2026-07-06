@@ -166,13 +166,13 @@ function validateCountry(country) {
 
 function validateCapital(capitals, cca3) {
     if (capitals.length === 1) {
-        return `its capital is <strong>${capitals[0]}</strong>`
+        return `its capital is <strong>${capitals[0].name}</strong>`
     }
     if (cca3 === 'ZAF') { // South Africa
-        return `its capitals are <strong>${capitals[0]}</strong> <em>(Administrative)</em>, <strong>${capitals[1]}</strong> <em>(Legislative)</em>, and <strong>${capitals[2]}</strong> <em>(Judicial)</em>`
+        return `its capitals are <strong>${capitals[0].name}</strong> <em>(Administrative)</em>, <strong>${capitals[1].name}</strong> <em>(Legislative)</em>, and <strong>${capitals[2].name}</strong> <em>(Judicial)</em>`
     }
     if (cca3 === 'PSE') { // Palestine
-        return `its capitals are <strong>${capitals[0]}</strong> <em>(Administrative)</em>, <strong>${capitals[1]}</strong> <em>(Proclaimed)</em>`
+        return `its capitals are <strong>${capitals[0].name}</strong> <em>(Administrative)</em>, <strong>${capitals[1].name}</strong> <em>(Proclaimed)</em>`
     }
 }
 
